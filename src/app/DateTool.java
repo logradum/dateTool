@@ -1,33 +1,40 @@
 package app;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Calendar;
 import java.util.Date;
 
 public class DateTool {
+
+  static Date now = new Date();
+  static Calendar calendar = Calendar.getInstance();
+
+  @NotNull
   public static Date addHoursToNow(int hoursToAdd) {
-    Date now = new Date();
-    Calendar calendar = Calendar.getInstance();
-    calendar.setTime(now);
+    getCalendarDateNow();
     calendar.add(Calendar.HOUR, hoursToAdd);
-    return now;
+    return calendar.getTime();
   }
 
-  public static Date addMinuteToNow(int minsToAdd) {
-    Date now = new Date();
-    Calendar calendar = Calendar.getInstance();
-    calendar.setTime(now);
+  @NotNull
+  public static Date addMinutesToNow(int minsToAdd) {
+    getCalendarDateNow();
     calendar.add(Calendar.MINUTE, minsToAdd);
     return calendar.getTime();
   }
 
-  public static Date addDayToNow(int daysToAdd) {
-    Date now = new Date();
-    Calendar calendar = Calendar.getInstance();
-    calendar.setTime(now);
-    calendar.add(Calendar.HOUR, daysToAdd);
-    return now;
+  @NotNull
+  public static Date addDaysToNow(int daysToAdd) {
+    getCalendarDateNow();
+    calendar.add(Calendar.DAY_OF_MONTH, daysToAdd);
+    return calendar.getTime();
   }
+
+  public static void getCalendarDateNow(){
+    calendar.setTime(now);
+  }
+
 }
 
-//some
 /*** упростить и убрть повторения
         сделать ассерты по времени*/

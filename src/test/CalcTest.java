@@ -2,8 +2,12 @@ package test;
 
 import app.Calc;
 import app.DateTool;
+import org.jetbrains.annotations.NotNull;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CalcTest {
@@ -11,6 +15,7 @@ public class CalcTest {
   int a=8;
   int b=4;
   int c=0;
+  static  Date resultDate;
 
 
   @Test
@@ -33,16 +38,58 @@ public class CalcTest {
   }
 
   @Test
-  public void  dormatDateTest (){
-    Date resultDate;
+  public void  addingHoursTest (){
+    String addedHoursToString = parseTimeToString(getAddedHoursDate(1));
+    /*** actual result is dynamic
+     * another function for calculating time should be in actual result
+     * put actual result manually***/
+    Assert.assertEquals("11:34",addedHoursToString);
+  }
 
-    resultDate = DateTool.addHoursToNow(1);
-    System.out.println(resultDate);
+  @Test
+  public void addingMinsTest() {
+    String addedMinsToString = parseTimeToString(getAddedMinsDate(5));
+    /*** actual result is dynamic
+     * another function for calculating time should be in actual result
+     * put actual result manually***/
+    Assert.assertEquals("10:39",addedMinsToString);
+  }
 
-    resultDate = DateTool.addMinuteToNow(5);
-    System.out.println(resultDate);
+  @Test
+  public void addingDaysTest() {
+    String addedDaysToString = parseDateToString(getAddedDaysDate(30));
+    /*** actual result is dynamic
+     * another function for calculating time should be in actual result
+     * put actual result manually***/
+    Assert.assertEquals("2019-07-18",addedDaysToString);
+  }
 
-    resultDate = DateTool.addDayToNow(30);
-    System.out.println(resultDate);
+  @NotNull
+  private String parseDateToString(Date addedDaysDate) {
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    return dateFormat.format(addedDaysDate);
+  }
+
+  private String parseTimeToString(Date addedMinsDate) {
+    DateFormat dateFormat = new SimpleDateFormat("hh:mm");
+    return dateFormat.format(addedMinsDate);
+  }
+
+  private Date getAddedDaysDate(int daysToAdd) {
+    resultDate = DateTool.addDaysToNow(daysToAdd);
+    System.out.println("Additional "+daysToAdd+" day(s) from now. The day is: "+resultDate);
+    return resultDate;
+  }
+
+  private Date getAddedMinsDate(int minsToAdd) {
+    resultDate = DateTool.addMinutesToNow(minsToAdd);
+    System.out.println("Additional "+minsToAdd+" minute(s) from now. The time is: "+resultDate);
+    return resultDate;
+  }
+
+  private Date getAddedHoursDate(int hoursToAdd) {
+    resultDate = DateTool.addHoursToNow(hoursToAdd);
+    System.out.println("Additional "+hoursToAdd+" hour(s) from now. The time is: "+resultDate);
+    return resultDate;
   }
 }
