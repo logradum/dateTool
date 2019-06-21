@@ -63,8 +63,7 @@ public class CalcTest {
      * put actual result manually***/
     Assert.assertEquals("2019-07-18",addedDaysToString);
   }
-//some
-  
+
   @NotNull
   private String parseDateToString(Date addedDaysDate) {
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
