@@ -8,7 +8,7 @@ public class DateTool {
 
   static Date now = new Date();
   static Calendar calendar = Calendar.getInstance();
-
+//changes for test
   @NotNull
   public static Date addHoursToNow(int hoursToAdd) {
     getCalendarDateNow();
